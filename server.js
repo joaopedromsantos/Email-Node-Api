@@ -7,6 +7,10 @@ import emailRoutes from './src/routes.js';
 
 const app = express();
 
+console.log("--- DEBUG CORS ---");
+console.log("FRONTEND_URL lido pela API:", process.env.FRONTEND_URL);
+console.log("--- FIM DEBUG ---");
+
 app.use(helmet());
 app.use(express.json({ limit: '10mb' }));
 app.use(cors({
