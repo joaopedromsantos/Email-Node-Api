@@ -7,9 +7,14 @@ const app = express();
 
 app.use(express.json({ limit: '10mb' }));
 
-app.use(cors({
-  origin: 'https://mss-landing-page-one.vercel.app',
-}));
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || 'https://mss-landing-page-one.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'x-api-key'], 
+  credentials: true
+};
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 
 app.use('/', emailRoutes);
 
